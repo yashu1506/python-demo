@@ -27,7 +27,7 @@ phases:
       - echo "Build phase ..."
       - sonar-scanner -Dsonar.login=sqp_e55adb85dc53903b49bfc3ce48d79c0a2e5939c2 -Dsonar.host.url=http://100.26.131.70:9000 -Dsonar.projectKey=python-demo -Dsonar.organization=yashvishah
       - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=python-demo >result.json
       - cat result.json
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
   post_build:
