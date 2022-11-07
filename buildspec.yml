@@ -1,7 +1,7 @@
 version: 0.2
-# env:
-#   secrets-manager:
-#     LOGIN: local/sonar:sonartoken
+env:
+   secrets-manager:
+     TOKEN: firstSecret:tokenForSonar
 #     HOST: local/sonar:HOST
 #     Organization: local/sonar:Organization
 #     Project: local/sonar:Project
@@ -25,7 +25,7 @@ phases:
   build:
     commands:
       - echo "Build phase ..."
-      - sonar-scanner -Dsonar.login=sqp_e60bf956c2618ba041502d1bcdabb0f45f3829b7 -Dsonar.host.url=http://54.208.206.161:9000 -Dsonar.projectKey=python-demo -Dsonar.organization=yashvishah
+      - sonar-scanner -Dsonar.login=$TOKEN -Dsonar.host.url=http://54.208.206.161:9000 -Dsonar.projectKey=python-demo -Dsonar.organization=yashvishah
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=python-demo >result.json
       - cat result.json
